@@ -39,7 +39,7 @@ public class AdminService {
                 admin.setId(rs.getInt("id"));
                 admin.setUsername(rs.getString("username"));
                 admin.setPassword(rs.getString("password"));
-                admin.setPicture(rs.getString("picture"));
+                admin.setPicture(rs.getString("picture") != null ? rs.getString("picture") : "default.jpg");
                 admin.setEmail(rs.getString("email"));
                 admin.setFirstName(rs.getString("first_name"));
                 admin.setLastName(rs.getString("last_name"));
@@ -63,7 +63,7 @@ public class AdminService {
                 admin.setId(rs.getInt("id"));
                 admin.setUsername(rs.getString("username"));
                 admin.setPassword(rs.getString("password"));
-                admin.setPicture(rs.getString("picture"));
+                admin.setPicture(rs.getString("picture") != null ? rs.getString("picture") : "default.jpg");
                 admin.setEmail(rs.getString("email"));
                 admin.setFirstName(rs.getString("first_name"));
                 admin.setLastName(rs.getString("last_name"));
