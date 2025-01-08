@@ -17,37 +17,5 @@
             </div>
         </div>
     </div>
-    <script>
-        let currentDeleteId = null;
-        
-        function showDeleteModal(id) {
-            currentDeleteId = id;
-            const modal = document.getElementById('deleteModal');
-            modal.classList.remove('opacity-0', 'pointer-events-none');
-            modal.classList.add('show');
-        }
-
-        function closeDeleteModal() {
-            const modal = document.getElementById('deleteModal');
-            modal.classList.remove('show');
-            modal.classList.add('opacity-0', 'pointer-events-none');
-            currentDeleteId = null;
-        }
-
-        function confirmDelete() {
-            if (currentDeleteId) {
-                console.log(`Deleting record ${currentDeleteId}`);
-                // Add your delete logic here
-            }
-            closeDeleteModal();
-        }
-
-        // Close modal when clicking outside
-        document.getElementById('deleteModal').addEventListener('click', (e) => {
-            if (e.target.id === 'deleteModal') {
-                closeDeleteModal();
-            }
-        });
-    </script>
 </body>
 </html>
