@@ -32,19 +32,19 @@ public class AdminServlet extends HttpServlet {
             request.getRequestDispatcher("admin/manageAdminsIndex.jsp").forward(request, response);
         } else if (action.equals("create")) {
             // Show the create admin form
-            request.getRequestDispatcher("createAdmin.jsp").forward(request, response);
+            request.getRequestDispatcher("admin/manageAdminsCreate.jsp").forward(request, response);
         } else if (action.equals("view")) {
             // Fetch admin details by ID and forward to details page
             int id = Integer.parseInt(request.getParameter("id"));
             Admin admin = adminService.getAdmin(id);
             request.setAttribute("admin", admin);
-            request.getRequestDispatcher("adminDetails.jsp").forward(request, response);
+            request.getRequestDispatcher("admin/manageAdminsIndex.jsp").forward(request, response);
         } else if (action.equals("edit")) {
             // Fetch admin by ID and show the edit form
             int id = Integer.parseInt(request.getParameter("id"));
             Admin admin = adminService.getAdmin(id);
             request.setAttribute("admin", admin);
-            request.getRequestDispatcher("editAdmin.jsp").forward(request, response);
+            request.getRequestDispatcher("admin/manageAdminsUpdate.jsp").forward(request, response);
         } else if (action.equals("delete")) {
             // Handle admin deletion, redirect to list page after deletion
             int id = Integer.parseInt(request.getParameter("id"));
