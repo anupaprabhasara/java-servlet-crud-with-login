@@ -10,6 +10,9 @@ import java.io.IOException;
 
 @WebServlet("/admin")
 public class AdminServlet extends HttpServlet {
+    /**
+     * 
+     */
     private static final long serialVersionUID = 1L;
     private AdminService adminService;
 
@@ -46,7 +49,7 @@ public class AdminServlet extends HttpServlet {
             // Handle admin deletion, redirect to list page after deletion
             int id = Integer.parseInt(request.getParameter("id"));
             adminService.deleteAdmin(id);
-            response.sendRedirect("admin"); // Default action, no action needed in URL
+            response.sendRedirect("admin");  // Default action, no action needed in URL
         }
     }
 
@@ -58,19 +61,21 @@ public class AdminServlet extends HttpServlet {
             // Create a new admin
             String username = request.getParameter("username");
             String password = request.getParameter("password");
+            String picture = request.getParameter("picture");
             String email = request.getParameter("email");
-            String firstName = request.getParameter("firstName");
-            String lastName = request.getParameter("lastName");
+            String firstName = request.getParameter("first_name");
+            String lastName = request.getParameter("last_name");
 
             Admin admin = new Admin();
             admin.setUsername(username);
             admin.setPassword(password);
+            admin.setPicture(picture);
             admin.setEmail(email);
             admin.setFirstName(firstName);
             admin.setLastName(lastName);
 
             if (adminService.createAdmin(admin)) {
-                response.sendRedirect("admin"); // Redirect to the admin list page
+                response.sendRedirect("admin");  // Redirect to the admin list page
             } else {
                 response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             }
@@ -79,20 +84,22 @@ public class AdminServlet extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("id"));
             String username = request.getParameter("username");
             String password = request.getParameter("password");
+            String picture = request.getParameter("picture");
             String email = request.getParameter("email");
-            String firstName = request.getParameter("firstName");
-            String lastName = request.getParameter("lastName");
+            String firstName = request.getParameter("first_name");
+            String lastName = request.getParameter("last_name");
 
             Admin admin = new Admin();
             admin.setId(id);
             admin.setUsername(username);
             admin.setPassword(password);
+            admin.setPicture(picture);
             admin.setEmail(email);
             admin.setFirstName(firstName);
             admin.setLastName(lastName);
 
             if (adminService.updateAdmin(admin)) {
-                response.sendRedirect("admin"); // Redirect to the admin list page
+                response.sendRedirect("admin");  // Redirect to the admin list page
             } else {
                 response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             }
@@ -100,7 +107,7 @@ public class AdminServlet extends HttpServlet {
             // Delete an admin
             int id = Integer.parseInt(request.getParameter("id"));
             if (adminService.deleteAdmin(id)) {
-                response.sendRedirect("admin"); // Redirect to the admin list page
+                response.sendRedirect("admin");  // Redirect to the admin list page
             } else {
                 response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             }

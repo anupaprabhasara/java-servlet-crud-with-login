@@ -11,14 +11,15 @@ public class AdminService {
 
     // Create Admin
     public boolean createAdmin(Admin admin) {
-        String query = "INSERT INTO admins (username, password, email, first_name, last_name) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO admins (username, password, picture, email, first_name, last_name) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, admin.getUsername());
             stmt.setString(2, admin.getPassword());
-            stmt.setString(3, admin.getEmail());
-            stmt.setString(4, admin.getFirstName());
-            stmt.setString(5, admin.getLastName());
+            stmt.setString(3, admin.getPicture());
+            stmt.setString(4, admin.getEmail());
+            stmt.setString(5, admin.getFirstName());
+            stmt.setString(6, admin.getLastName());
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -38,6 +39,7 @@ public class AdminService {
                 admin.setId(rs.getInt("id"));
                 admin.setUsername(rs.getString("username"));
                 admin.setPassword(rs.getString("password"));
+                admin.setPicture(rs.getString("picture"));
                 admin.setEmail(rs.getString("email"));
                 admin.setFirstName(rs.getString("first_name"));
                 admin.setLastName(rs.getString("last_name"));
@@ -61,6 +63,7 @@ public class AdminService {
                 admin.setId(rs.getInt("id"));
                 admin.setUsername(rs.getString("username"));
                 admin.setPassword(rs.getString("password"));
+                admin.setPicture(rs.getString("picture"));
                 admin.setEmail(rs.getString("email"));
                 admin.setFirstName(rs.getString("first_name"));
                 admin.setLastName(rs.getString("last_name"));
@@ -74,15 +77,16 @@ public class AdminService {
 
     // Update Admin
     public boolean updateAdmin(Admin admin) {
-        String query = "UPDATE admins SET username = ?, password = ?, email = ?, first_name = ?, last_name = ? WHERE id = ?";
+        String query = "UPDATE admins SET username = ?, password = ?, picture = ?, email = ?, first_name = ?, last_name = ? WHERE id = ?";
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, admin.getUsername());
             stmt.setString(2, admin.getPassword());
-            stmt.setString(3, admin.getEmail());
-            stmt.setString(4, admin.getFirstName());
-            stmt.setString(5, admin.getLastName());
-            stmt.setInt(6, admin.getId());
+            stmt.setString(3, admin.getPicture());
+            stmt.setString(4, admin.getEmail());
+            stmt.setString(5, admin.getFirstName());
+            stmt.setString(6, admin.getLastName());
+            stmt.setInt(7, admin.getId());
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();

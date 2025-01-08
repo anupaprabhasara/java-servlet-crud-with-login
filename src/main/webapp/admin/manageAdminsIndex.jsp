@@ -22,22 +22,26 @@
                             <thead>
                                 <tr class="bg-black/50">
                                     <th class="px-6 py-3 text-left text-xs font-medium text-purple-300 uppercase tracking-wider">ID</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-purple-300 uppercase tracking-wider">Username</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-purple-300 uppercase tracking-wider">Picture</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-purple-300 uppercase tracking-wider">Email</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-purple-300 uppercase tracking-wider">First Name</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-purple-300 uppercase tracking-wider">Last Name</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-purple-300 uppercase tracking-wider">Username</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-purple-300 uppercase tracking-wider">Email</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-purple-300 uppercase tracking-wider">Edit</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-purple-300 uppercase tracking-wider">Delete</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-purple-500/20">
-                            	<c:forEach var="admin" items="${admin}">
+                            	<c:forEach var="admin" items="${admins}">
 	                                <tr class="hover:bg-purple-500/5 transition-colors">
 	                                    <td class="px-6 py-4 whitespace-nowrap text-gray-300">${admin.id}</td>
-	                                    <td class="px-6 py-4 whitespace-nowrap text-gray-300">${admin.firstname}</td>
-	                                    <td class="px-6 py-4 whitespace-nowrap text-gray-300">${admin.lastname}</td>
 	                                    <td class="px-6 py-4 whitespace-nowrap text-gray-300">${admin.username}</td>
+	                                    <td class="px-6 py-4 whitespace-nowrap text-gray-300">
+	                                    	<img class="w-10 h-10 rounded-full" src="admin/picture/${admin.picture}" alt="Description of the image" width="500">
+	                                    </td>
 	                                    <td class="px-6 py-4 whitespace-nowrap text-gray-300">${admin.email}</td>
+	                                    <td class="px-6 py-4 whitespace-nowrap text-gray-300">${admin.firstName}</td>
+	                                    <td class="px-6 py-4 whitespace-nowrap text-gray-300">${admin.lastName}</td>
 	                                    <td class="px-6 py-4 whitespace-nowrap space-x-2">
 	                                        <button class="text-purple-400 hover:text-purple-300">Edit</button>
 	                                    </td>
