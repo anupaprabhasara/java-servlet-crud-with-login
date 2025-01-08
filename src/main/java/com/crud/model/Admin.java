@@ -52,3 +52,4 @@ public class Admin {
 		this.lastName = lastName;
 	}
 }
+
