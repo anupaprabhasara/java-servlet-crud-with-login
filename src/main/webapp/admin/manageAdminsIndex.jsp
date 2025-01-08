@@ -42,7 +42,7 @@
 	                                        <button class="text-purple-400 hover:text-purple-300">Edit</button>
 	                                    </td>
 	                                    <td class="px-6 py-4 whitespace-nowrap space-x-2">
-	                                        <button onclick="showDeleteModal('1')" class="text-red-400 hover:text-red-300">Delete</button>
+	                                        <button onclick="showDeleteModal('${admin.id}')" class="text-red-400 hover:text-red-300">Delete</button>
 	                                    </td>
 	                                </tr>
 	                        	</c:forEach>
