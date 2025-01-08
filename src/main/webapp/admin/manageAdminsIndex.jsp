@@ -43,7 +43,7 @@
 	                                    <td class="px-6 py-4 whitespace-nowrap text-gray-300">${admin.firstName}</td>
 	                                    <td class="px-6 py-4 whitespace-nowrap text-gray-300">${admin.lastName}</td>
 	                                    <td class="px-6 py-4 whitespace-nowrap space-x-2">
-	                                        <button class="text-purple-400 hover:text-purple-300" onclick="window.location.href='admin?action=edit&id=${user.id}';">Edit</button>
+	                                        <button class="text-purple-400 hover:text-purple-300" onclick="window.location.href='admin?action=edit&id=${admin.id}';">Edit</button>
 	                                    </td>
 	                                    <td class="px-6 py-4 whitespace-nowrap space-x-2">
 	                                        <button onclick="showDeleteModal('${admin.id}')" class="text-red-400 hover:text-red-300">Delete</button>
