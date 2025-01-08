@@ -10,7 +10,7 @@
                 <div class="mb-4">
                     <button 
                             class="bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900 text-white px-4 py-2 rounded-lg transition-all duration-300 shadow-lg"
-                            onclick="window.location.href='create.html';"
+                            onclick="window.location.href='admin?action=create';"
                             >
                         Create New Record
                     </button>
@@ -43,7 +43,7 @@
 	                                    <td class="px-6 py-4 whitespace-nowrap text-gray-300">${admin.firstName}</td>
 	                                    <td class="px-6 py-4 whitespace-nowrap text-gray-300">${admin.lastName}</td>
 	                                    <td class="px-6 py-4 whitespace-nowrap space-x-2">
-	                                        <button class="text-purple-400 hover:text-purple-300">Edit</button>
+	                                        <button class="text-purple-400 hover:text-purple-300" onclick="window.location.href='admin?action=edit&id=${user.id}';">Edit</button>
 	                                    </td>
 	                                    <td class="px-6 py-4 whitespace-nowrap space-x-2">
 	                                        <button onclick="showDeleteModal('${admin.id}')" class="text-red-400 hover:text-red-300">Delete</button>
@@ -55,5 +55,37 @@
                     </div>
                 </div>
             </main>
+			<script>
+		        let currentDeleteId = null;
+		        
+		        function showDeleteModal(id) {
+		            currentDeleteId = id;
+		            const modal = document.getElementById('deleteModal');
+		            modal.classList.remove('opacity-0', 'pointer-events-none');
+		            modal.classList.add('show');
+		        }
+		
+		        function closeDeleteModal() {
+		            const modal = document.getElementById('deleteModal');
+		            modal.classList.remove('show');
+		            modal.classList.add('opacity-0', 'pointer-events-none');
+		            currentDeleteId = null;
+		        }
+		
+		        function confirmDelete() {
+		            if (currentDeleteId) {
+		                console.log(`Deleting record ${currentDeleteId}`);
+		                window.location.href='admin?action=delete&id='+currentDeleteId;
+		            }
+		            closeDeleteModal();
+		        }
+		
+		        // Close modal when clicking outside
+		        document.getElementById('deleteModal').addEventListener('click', (e) => {
+		            if (e.target.id === 'deleteModal') {
+		                closeDeleteModal();
+		            }
+		        });
+		    </script>
             
 <%@ include file="./partials/footer.jsp"%>
