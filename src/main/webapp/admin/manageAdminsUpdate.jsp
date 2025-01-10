@@ -4,6 +4,10 @@
 
 <%@ include file="./partials/header.jsp"%>
 
+                    <h2 class="text-xl font-semibold text-white">Dashboard</h2>
+                    
+<%@ include file="./partials/middle.jsp"%>
+
 <!-- Main Content with Form -->
 <main class="flex-1 p-6">
     <div class="bg-black/50 backdrop-blur-lg rounded-lg shadow-xl border border-purple-500/20 p-6 max-w-2xl mx-auto">
