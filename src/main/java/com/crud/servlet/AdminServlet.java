@@ -49,6 +49,17 @@ public class AdminServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
 
+        HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("admin") == null) {
+            response.sendRedirect(request.getContextPath() + "/admin/login");
+            return;
+        }
+
+        // Add session variables to the request for use in JSP
+        request.setAttribute("firstName", session.getAttribute("firstName"));
+        request.setAttribute("lastName", session.getAttribute("lastName"));
+        request.setAttribute("picture", session.getAttribute("picture"));
+
         if (action == null) {
             request.setAttribute("admins", adminService.getAllAdmins());
             request.getRequestDispatcher("admin/manageAdminsIndex.jsp").forward(request, response);
@@ -68,6 +79,9 @@ public class AdminServlet extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("id"));
             adminService.deleteAdmin(id);
             response.sendRedirect("admin");
+        } else if (action.equals("logout")) {
+            session.invalidate();
+            response.sendRedirect(request.getContextPath() + "/admin/login");
         }
     }
 

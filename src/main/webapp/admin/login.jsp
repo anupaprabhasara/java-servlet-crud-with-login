@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
-      <style>
-        /* Custom select styling */
+    <style>
+        /* Custom styles */
         select {
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239333ea' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
             background-position: right 0.5rem center;
@@ -18,12 +20,6 @@
             -moz-appearance: none;
             appearance: none;
         }
-        select option {
-            background-color: #0f0f0f;
-            color: #e5e7eb;
-            padding: 8px;
-        }
-        /* Custom radio and checkbox styles */
         input[type="radio"], input[type="checkbox"] {
             appearance: none;
             background-color: #0f0f0f;
@@ -61,18 +57,6 @@
             background-color: #9333ea;
             clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
         }
-        /* Custom toggle switch */
-        .toggle-bg {
-            background-color: #0f0f0f;
-            border: 1px solid rgba(147, 51, 234, 0.3);
-        }
-        .toggle-dot {
-            background-color: #9333ea;
-            transition: transform 0.3s ease-in-out;
-        }
-        input:checked ~ .toggle-bg .toggle-dot {
-            transform: translateX(100%);
-        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-black to-gray-900 min-h-screen flex items-center justify-center">
@@ -82,14 +66,22 @@
             <p class="text-gray-400">Enter your credentials to access the dashboard</p>
         </div>
 
-        <form class="space-y-6">
-            <!-- Email Input -->
+        <!-- Display error message if login fails -->
+        <c:if test="${not empty error}">
+            <div class="bg-red-500/20 text-red-400 border border-red-500 rounded-lg p-4 mb-6">
+                <p>${error}</p>
+            </div>
+        </c:if>
+
+        <form class="space-y-6" method="post" action="${pageContext.request.contextPath}/admin/login">
+            <!-- Email/Username Input -->
             <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                <label class="block text-sm font-medium text-gray-300 mb-2">Username</label>
                 <input 
-                    type="email" 
+                    type="text" 
+                    name="email"
                     class="w-full px-4 py-2 rounded-lg bg-[#0f0f0f] border border-purple-500/20 text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors placeholder-gray-500"
-                    placeholder="admin@example.com"
+                    placeholder="Enter email or username"
                     required
                 >
             </div>
@@ -99,6 +91,7 @@
                 <label class="block text-sm font-medium text-gray-300 mb-2">Password</label>
                 <input 
                     type="password" 
+                    name="password"
                     class="w-full px-4 py-2 rounded-lg bg-[#0f0f0f] border border-purple-500/20 text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors placeholder-gray-500"
                     placeholder="••••••••"
                     required
@@ -125,16 +118,8 @@
 
         <!-- Additional Links -->
         <div class="mt-6 text-center text-sm text-gray-400">
-            Need help? <span class="text-purple-400 cursor-pointer hover:text-purple-300" onclick="window.location.href='https:\/\/anupa.lk';">Contact support</span>
+            Need help? <span class="text-purple-400 cursor-pointer hover:text-purple-300" onclick="window.location.href='https://anupa.lk';">Contact support</span>
         </div>
     </div>
-
-    <script>
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Add your authentication logic here
-            window.location.href = '../admin';
-        });
-    </script>
 </body>
 </html>
